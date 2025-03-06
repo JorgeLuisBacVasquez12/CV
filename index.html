@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jorge Bac - Portfolio Profesional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        :root {
+            --primary: #2563EB;
+            --secondary: #3B82F6;
+            --accent: #10B981;
+            --dark: #1E293B;
+            --light: #F8FAFC;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            padding-top: 70px;
+        }
+
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Navbar */
+        .nav-dashboard {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--primary);
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header */
+        .profile-header {
+            text-align: center;
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-photo {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin: 1rem auto;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-photo:hover {
+            transform: rotate(5deg) scale(1.05);
+        }
+
+        /* Habilidades */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #E2E8F0;
+            border-radius: 4px;
+            margin: 1rem 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient);
+            transition: width 1s ease;
+        }
+
+        .progress-percent {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .skill-level {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--accent);
+            margin-top: 0.3rem;
+            font-weight: 600;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+            margin: 4rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -28px;
+            top: 25px;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        /* Contacto */
+        .contact-section {
+            background: var(--gradient);
+            padding: 4rem 0;
+            color: white;
+            border-radius: 15px;
+            margin: 4rem 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+                justify-content: center;
+            }
+            
+            .timeline::before {
+                left: 10px;
+            }
+            
+            .timeline-item::before {
+                left: -23px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <!-- Navbar -->
+    <nav class="nav-dashboard" data-aos="fade-down">
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="#about" class="nav-link">Sobre mí</a></li>
+                <li><a href="#skills" class="nav-link">Habilidades</a></li>
+                <li><a href="#education" class="nav-link">Educación</a></li>
+                <li><a href="#experience" class="nav-link">Experiencia</a></li>
+                <li><a href="#contact" class="nav-link">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Encabezado -->
+        <header class="profile-header" data-aos="fade-down" id="about">
+            <img src="PERFIL.jpeg" alt="Jorge Bac" class="profile-photo">
+            <h1 data-aos="fade-up">Jorge Luis Bac Vásquez</h1>
+            <p class="subtitle" data-aos="fade-up" data-aos-delay="200">Desarrollador en Formación Continua</p>
+        </header>
+
+        <!-- Sobre Mí -->
+        <section class="about-section" data-aos="fade-up">
+            <h2 class="section-title">Acerca de Mí</h2>
+            <div class="about-content">
+                <p>Ingeniero en Sistemas en formación con pasión por el desarrollo de soluciones tecnológicas. Actualmente cursando el noveno semestre en la Universidad Mariano Gálvez, combinando estudios con experiencia práctica en docencia tecnológica.</p>
+                
+                <div class="highlight-box">
+                    <h3>Características Principales:</h3>
+                    <ul>
+                        <li>🧠 Fuerte enfoque en lógica de programación</li>
+                        <li>📚 Aprendizaje constante de nuevas tecnologías</li>
+                        <li>👨💻 Capacidad para trabajar en equipo</li>
+                        <li>🚀 Comprometido con la mejora continua</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Habilidades Técnicas -->
+        <section class="skills-section" data-aos="fade-up" id="skills">
+            <h2 class="section-title">Habilidades Técnicas</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3><i class="fab fa-html5"></i> Frontend</h3>
+                    <div class="skill-item">
+                        <p>HTML5/CSS3
+                            <span class="skill-level">55% - Intermedio</span>
+                        </p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 65%"></div>
+                            <span class="progress-percent">55%</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <p>JavaScript
+                            <span class="skill-level">45% - Básico</span>
+                        </p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 40%"></div>
+                            <span class="progress-percent">45%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h3><i class="fas fa-code"></i> Programación</h3>
+                    <div class="skill-item">
+                        <p>C++
+                            <span class="skill-level">60% - Intermedio</span>
+                        </p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 55%"></div>
+                            <span class="progress-percent">60%</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <p>Python
+                            <span class="skill-level">45% - Básico</span>
+                        </p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 45%"></div>
+                            <span class="progress-percent">45%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h3><i class="fas fa-database"></i> Bases de Datos</h3>
+                    <div class="skill-item">
+                        <p>MySQL
+                            <span class="skill-level">45% - Intermedio</span>
+                        </p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 60%"></div>
+                            <span class="progress-percent">45%</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <p>SQLite
+                            <span class="skill-level">45% - Básico</span>
+                        </p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 50%"></div>
+                            <span class="progress-percent">45%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Educación -->
+        <section class="education-section" data-aos="fade-up" id="education">
+            <h2 class="section-title">Formación Académica</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Ingeniería en Sistemas</h3>
+                    <p class="date">2025 - Presente</p>
+                    <p>Universidad Mariano Gálvez - Noveno Semestre</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Perito en Computación</h3>
+                    <p class="date">2018 - 2020</p>
+                    <p>Liceo de Computación Siglo 21</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experiencia -->
+        <section class="experience-section" data-aos="fade-up" id="experience">
+            <h2 class="section-title">Experiencia Laboral</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Catedrático de Tecnología</h3>
+                    <p class="date">2022 - 2024</p>
+                    <p>Colegio de Computación Siglo 21</p>
+                    <ul>
+                        <li>Enseñanza de programación básica</li>
+                        <li>Desarrollo de material educativo</li>
+                        <li>Coordinación de proyectos estudiantiles</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacto -->
+        <section class="contact-section" data-aos="fade-up" id="contact">
+            <h2 class="section-title">- - - - - - - - - - - - - - - - - - - - Información de Contacto y Redes Profesionales - - - - - - - - - - - - - - - - - - - -</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <i class="fas fa-envelope fa-2x"></i>
+                    <h3>Email</h3>
+                    <p>Juniorbacb2@gmail.com</p>
+                    <h3>Teléfono</h3>
+                    <p>4218 3548</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt fa-2x"></i>
+                    <h3>Ubicación</h3>
+                    <p>Suchitepéquez, Guatemala</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-share-alt fa-2x"></i>
+                    <h3>Redes</h3>
+                    <div class="social-links">
+                        <a href="https://github.com/JorgeLuisBacVasquez12" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.facebook.com/share/1ADboEspR8/" target="_blank">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Animaciones
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Partículas
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80 },
+                color: { value: '#3B82F6' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5 },
+                size: { value: 3 },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: 'none',
+                    random: false,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: { enable: true, mode: 'repulse' },
+                    onclick: { enable: true, mode: 'push' },
+                    resize: true
+                }
+            }
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Animación de barras de progreso
+        document.querySelectorAll('.progress-fill').forEach(bar => {
+            const width = bar.style.width;
+            bar.style.width = '0';
+            setTimeout(() => {
+                bar.style.width = width;
+            }, 500);
+        });
+    </script>
+</body>
+</html>
